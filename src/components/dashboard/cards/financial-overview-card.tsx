@@ -87,12 +87,12 @@ export function FinancialOverviewCard() {
                 )}
                 {item.icon === "coin" && (
                   <Image
-                  src="/icons/coin-income.png"
-                  alt="Fire"
-                  width={18}
-                  height={18}
-                  className="text-white"
-                />
+                    src="/icons/coin-income.png"
+                    alt="Fire"
+                    width={18}
+                    height={18}
+                    className="text-white"
+                  />
                 )}
               </div>
               <div className="ml-4 max-w-40 text-wrap">

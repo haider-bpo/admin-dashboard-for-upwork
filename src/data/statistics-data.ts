@@ -1,5 +1,15 @@
 import { StatisticsCardData } from "@/types/dashboard";
 
+/**
+ * Mock statistics data for the dashboard statistics cards
+ * Contains user counts, subscriber numbers, and revenue metrics
+ *
+ * Each card contains:
+ * - title: The main statistic title
+ * - value: The numerical value to display
+ * - description: Additional context for the statistic
+ * - icon: Path to the image icon for the card
+ */
 export const statisticsData: StatisticsCardData[] = [
   {
     title: "Total Users",

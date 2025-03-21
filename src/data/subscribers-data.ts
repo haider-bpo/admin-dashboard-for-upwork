@@ -1,5 +1,17 @@
 import { SubscriberData } from "@/types/dashboard";
 
+/**
+ * Mock subscribers data for the dashboard subscriber lists
+ * Used in both the loyal subscribers list and unsubscribers list sections
+ *
+ * Each subscriber entry contains:
+ * - id: Unique identifier for the subscriber
+ * - username: The user's display name (with @ prefix)
+ * - avatar: Path to the user's avatar image
+ * - date: Formatted date string of subscription/activity
+ * - role: User role category that determines badge color
+ * - points: Activity points for the user's engagement
+ */
 export const subscribersData: SubscriberData[] = [
   {
     id: 1,

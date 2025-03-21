@@ -10,11 +10,24 @@ import {
 } from "recharts";
 import { FinancialData } from "@/types/dashboard";
 
+/**
+ * Props for the PieChart component
+ * @interface PieChartProps
+ * @property {FinancialData[]} data - Array of financial data objects to visualize
+ * @property {string} [className] - Optional additional CSS classes
+ */
 interface PieChartProps {
   data: FinancialData[];
   className?: string;
 }
 
+/**
+ * Props for the CustomTooltip component
+ * @interface CustomTooltipProps
+ * @extends {TooltipProps<number, string>} - Extends Recharts tooltip props
+ * @property {boolean} [active] - Whether the tooltip is active
+ * @property {Array} [payload] - Data payload for the tooltip
+ */
 interface CustomTooltipProps extends TooltipProps<number, string> {
   active?: boolean;
   payload?: Array<{
@@ -24,6 +37,14 @@ interface CustomTooltipProps extends TooltipProps<number, string> {
   }>;
 }
 
+/**
+ * CustomTooltip Component
+ * Renders a styled tooltip for the pie chart
+ * Shows the value and name of the hovered pie segment
+ *
+ * @param {CustomTooltipProps} props - Component props from Recharts
+ * @returns {React.ReactElement | null} The tooltip element or null when inactive
+ */
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -37,6 +58,16 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   return null;
 };
 
+/**
+ * PieChart Component
+ * Renders a customized pie chart visualization using Recharts
+ * Displays financial data with custom colors and tooltips
+ *
+ * @param {PieChartProps} props - Component properties
+ * @param {FinancialData[]} props.data - Financial data to visualize
+ * @param {string} [props.className] - Optional additional CSS classes
+ * @returns {React.JSX.Element} The rendered pie chart
+ */
 export function PieChart({ data, className }: PieChartProps) {
   return (
     <div className={`h-full w-full ${className}`}>
@@ -54,6 +85,7 @@ export function PieChart({ data, className }: PieChartProps) {
             startAngle={90}
             endAngle={-270}
           >
+            {/* Map each data point to a Cell with the specified color */}
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
@@ -64,6 +96,7 @@ export function PieChart({ data, className }: PieChartProps) {
               />
             ))}
           </Pie>
+          {/* Custom tooltip component for better UX */}
           <Tooltip content={<CustomTooltip />} />
         </RechartsPieChart>
       </ResponsiveContainer>
