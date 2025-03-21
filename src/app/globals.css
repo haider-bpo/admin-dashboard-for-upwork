@@ -133,3 +133,16 @@
   border-top: 1.5px solid #ffffff80;
   backdrop-filter: blur(50.79999923706055px);
 }
+
+.custom-gradient-border {
+  border-image-source: linear-gradient(
+    100.7deg,
+    rgba(255, 74, 231, 0.7) 0%,
+    rgba(133, 167, 243, 0) 32.5%,
+    rgba(131, 168, 243, 0) 69%,
+    rgba(17, 255, 255, 0.7) 100%
+  );
+  border-image-slice: 1; /* Ensures the gradient fills the border */
+  backdrop-filter: blur(8.4px);
+  border-radius: 50%; /* Matches Tailwind's rounded-full */
+}

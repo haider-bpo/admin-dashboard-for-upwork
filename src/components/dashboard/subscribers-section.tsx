@@ -1,6 +1,6 @@
-import { SubscribersList } from "./lists/subscribers-list";
+import { subscribersData } from "@/data/subscribers-data";
 import { HallOfFamersList } from "./lists/hall-of-famers-list";
-import { LoyalSubscribersList } from "./lists/loyal-subscribers-list";
+import { SubscribersList } from "./lists/subscribers-list";
 
 interface SubscribersSectionProps {
   isLoaded: boolean;
@@ -17,8 +17,8 @@ export function SubscribersSection({ isLoaded }: SubscribersSectionProps) {
       }}
     >
       <HallOfFamersList />
-      <LoyalSubscribersList />
-      <SubscribersList title="The Bench - Unsubscribers" />
+      <SubscribersList title="All Stars - Loyal Subscribers" subscribers={subscribersData} />
+      <SubscribersList title="The Bench - Unsubscribers" subscribers={subscribersData} />
     </div>
   );
 }

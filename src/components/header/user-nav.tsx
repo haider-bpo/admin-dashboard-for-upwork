@@ -22,7 +22,7 @@ export function UserNav() {
           <div className="w-14 h-14 hidden md:block"></div> 
           <Avatar className="absolute right-[-30] md:right-[-20] h-24 w-24">
             <AvatarImage
-              src="/icons/user-avatar.png"
+              src="/avatars/user-avatar.png"
               alt="Admin User"
             />
             <AvatarFallback className="bg-[#4c2a85] text-white">

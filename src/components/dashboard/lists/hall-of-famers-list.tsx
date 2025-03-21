@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { RemixerData } from "@/types/dashboard";
 import { remixersData } from "@/data/remixers-data";
 import { useState } from "react";
+import Image from "next/image";
+import { ViewAllButton } from "./view-all-button";
+import AvatarPic from "./avatar-pic";
 
 interface HallOfFamersListProps {
   title?: string;
@@ -19,32 +22,10 @@ export function HallOfFamersList({
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <Card
-      className="overflow-hidden bg-gradient transition-all duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1 glass-panel"
-      //   style={{
-      //     background:
-      //       "linear-gradient(126.6deg, rgba(255, 255, 255, 0.12) 28.69%, rgba(0, 8, 153, 0.2) 100%)",
-      //     borderTop: "1.5px solid #FFFFFF80",
-      //     backdropFilter: "blur(50.79999923706055px)",
-      //   }}
-    >
+    <Card className="overflow-hidden bg-gradient transition-all duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-md font-medium">{title}</CardTitle>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="w-[79px] h-[31px] px-3 text-white"
-          style={{
-            borderRadius: "15px",
-            background: "rgba(43, 43, 43, 0.11)",
-            border: "1px solid",
-            borderImage:
-              "linear-gradient(100.7deg, rgba(255, 74, 231, 0.7) 0%, rgba(133, 167, 243, 0) 32.5%, rgba(131, 168, 243, 0) 69%, rgba(17, 255, 255, 0.7) 100%) 1",
-            backdropFilter: "blur(8.4px)",
-          }}
-        >
-          View all
-        </Button>
+        <CardTitle className="text-md font-bold">{title}</CardTitle>
+        <ViewAllButton />
       </CardHeader>
       <CardContent>
         <ul className="space-y-4">
@@ -62,8 +43,8 @@ export function HallOfFamersList({
               onMouseLeave={() => setHoveredId(null)}
             >
               <div className="flex items-center space-x-3">
-                <Avatar
-                  className="h-10 w-10 transition-transform duration-300"
+                {/* <Avatar
+                  className="h-12 w-12 p-[.4rem] bg-[#3d2e50] transition-transform duration-300 border-2 border-[#2e9cb2]"
                   style={{
                     transform:
                       hoveredId === remixer.id ? "scale(1.1)" : "scale(1)",
@@ -73,7 +54,9 @@ export function HallOfFamersList({
                   <AvatarFallback>
                     {remixer.username.charAt(1).toUpperCase()}
                   </AvatarFallback>
-                </Avatar>
+                </Avatar> */}
+
+                <AvatarPic src={remixer.avatar} username={remixer.username} alt={remixer.username} hoveredId = {remixer.id}/>
                 <div>
                   <p className="text-sm font-medium leading-none text-white">
                     {remixer.username}
@@ -85,10 +68,14 @@ export function HallOfFamersList({
               </div>
               <div className="flex flex-col items-end">
                 <div className="flex items-center space-x-1">
-                  <span className="text-amber-400 font-bold">🪙</span>
-                  <span className="text-amber-400 font-bold">
-                    {remixer.spent}
-                  </span>
+                  <Image
+                    src="/icons/coin.png"
+                    alt="Fire"
+                    width={18}
+                    height={18}
+                    className="text-white"
+                  />
+                  <span className="font-bold">{remixer.spent}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">Spent</p>
               </div>

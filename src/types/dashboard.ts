@@ -12,15 +12,6 @@ export interface StatisticsCardData {
   icon: string;
 }
 
-export interface SubscriberData {
-  id: number;
-  name: string;
-  email: string;
-  avatar: string;
-  status: "Active" | "Inactive";
-  value: number;
-}
-
 export interface FinancialData {
   name: string;
   value: number;
@@ -57,7 +48,7 @@ export interface RemixerData {
   spent: number;
 }
 
-export interface LoyalSubscriberData {
+export interface SubscriberData {
   id: number;
   username: string;
   avatar: string;
