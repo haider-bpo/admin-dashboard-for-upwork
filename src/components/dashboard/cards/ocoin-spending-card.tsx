@@ -8,7 +8,7 @@ import { BarChart } from "../charts/bar-chart";
 
 export function OcoinSpendingCard() {
   return (
-    <Card className="overflow-hidden bg-gradient">
+    <Card className="overflow-hidden bg-gradient transition-all duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 px-6">
         <div>
           <CardTitle className="text-xl font-bold text-white">
