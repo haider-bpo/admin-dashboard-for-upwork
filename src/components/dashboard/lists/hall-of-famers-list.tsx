@@ -1,8 +1,6 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { RemixerData } from "@/types/dashboard";
 import { remixersData } from "@/data/remixers-data";
 import { useState } from "react";
@@ -43,20 +41,12 @@ export function HallOfFamersList({
               onMouseLeave={() => setHoveredId(null)}
             >
               <div className="flex items-center space-x-3">
-                {/* <Avatar
-                  className="h-12 w-12 p-[.4rem] bg-[#3d2e50] transition-transform duration-300 border-2 border-[#2e9cb2]"
-                  style={{
-                    transform:
-                      hoveredId === remixer.id ? "scale(1.1)" : "scale(1)",
-                  }}
-                >
-                  <AvatarImage src={remixer.avatar} alt={remixer.username} />
-                  <AvatarFallback>
-                    {remixer.username.charAt(1).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar> */}
-
-                <AvatarPic src={remixer.avatar} username={remixer.username} alt={remixer.username} hoveredId = {remixer.id}/>
+                <AvatarPic
+                  src={remixer.avatar}
+                  username={remixer.username}
+                  alt={remixer.username}
+                  hoveredId={remixer.id}
+                />
                 <div>
                   <p className="text-sm font-medium leading-none text-white">
                     {remixer.username}
