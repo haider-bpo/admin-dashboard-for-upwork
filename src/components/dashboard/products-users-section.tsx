@@ -1,5 +1,5 @@
-import { PopularProductsCard } from "./cards/popular-products-card";
-import { TopUsersCard } from "./cards/top-users-card";
+import { AppUsageCard } from "./cards/app-usage-card";
+import { RemixedProductsCard } from "./cards/remixed-products-card";
 
 interface ProductsAndUsersSectionProps {
   isLoaded: boolean;
@@ -17,8 +17,8 @@ export function ProductsAndUsersSection({
         transitionDelay: "800ms",
       }}
     >
-      <PopularProductsCard />
-      <TopUsersCard />
+      <RemixedProductsCard/>
+      <AppUsageCard/>
     </div>
   );
 }

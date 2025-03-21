@@ -1,4 +1,3 @@
-
 export interface NavItem {
   title: string;
   href: string;
@@ -55,4 +54,22 @@ export interface SubscriberData {
   date: string;
   role: string;
   points: number;
+}
+
+export interface RemixedProductData {
+  id: number;
+  name: string;
+  image: string;
+  date: string;
+  timeRemixed: number;
+  downloads: number;
+  views: number;
+}
+
+export interface AppUsageData {
+  id: number;
+  name: string;
+  image: string;
+  date: string;
+  timeUsed: number;
 }

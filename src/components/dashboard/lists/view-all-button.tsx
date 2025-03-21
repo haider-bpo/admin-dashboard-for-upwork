@@ -9,7 +9,7 @@ interface ViewAllButtonProps {
 export const ViewAllButton: React.FC<ViewAllButtonProps> = ({
   onClick,
   className = "",
-  rounded = false, // Default to subtle rounding (matches image)
+  rounded = true, // Default to subtle rounding (matches image)
 }) => {
   return (
     <>
