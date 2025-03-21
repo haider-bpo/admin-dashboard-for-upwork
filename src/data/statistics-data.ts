@@ -1,29 +1,28 @@
-import { Users, ShoppingCart, CreditCard, Activity } from "lucide-react";
 import { StatisticsCardData } from "@/types/dashboard";
 
 export const statisticsData: StatisticsCardData[] = [
   {
     title: "Total Users",
-    value: "4,322",
-    description: "Current Users",
-    icon: Users,
+    value: "6522",
+    description: "Online Users",
+    icon: "/images/stat/user.png",
   },
   {
     title: "Online Users",
-    value: "655",
-    description: "Current Online",
-    icon: Activity,
+    value: "685",
+    description: "New Signups",
+    icon: "/images/stat/signups.png",
   },
   {
     title: "Active Subscribers",
-    value: "476",
-    description: "Daily Subscribers",
-    icon: ShoppingCart,
+    value: "474",
+    description: "New Subscribers",
+    icon: "/images/stat/mail.png",
   },
   {
     title: "Revenue",
-    value: "$8,345",
-    description: "Daily Subscriptions",
-    icon: CreditCard,
+    value: "8",
+    description: "Unsubscriptions",
+    icon: "/images/stat/open-mail.png",
   },
 ];

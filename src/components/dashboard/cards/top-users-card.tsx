@@ -6,7 +6,13 @@ import { TopUsersList } from "../lists/top-users-list";
 
 export function TopUsersCard() {
   return (
-    <Card className="overflow-hidden transition-all duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1">
+    <Card className="overflow-hidden transition-all duration-300 ease-in-out transform hover:shadow-lg hover:-translate-y-1"
+    style={{
+      background:
+        "linear-gradient(126.6deg, rgba(255, 255, 255, 0.12) 28.69%, rgba(0, 8, 153, 0.6) 100%)",
+      borderTop: "1.5px solid #FFFFFF80",
+      backdropFilter: "blur(50.79999923706055px)",
+    }}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-md font-medium">Top users</CardTitle>
         <Button variant="ghost" size="sm">

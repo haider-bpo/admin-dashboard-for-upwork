@@ -1,4 +1,6 @@
 import { SubscribersList } from "./lists/subscribers-list";
+import { HallOfFamersList } from "./lists/hall-of-famers-list";
+import { LoyalSubscribersList } from "./lists/loyal-subscribers-list";
 
 interface SubscribersSectionProps {
   isLoaded: boolean;
@@ -14,8 +16,8 @@ export function SubscribersSection({ isLoaded }: SubscribersSectionProps) {
         transitionDelay: "400ms",
       }}
     >
-      <SubscribersList title="Hall of Heroes - Top Referrers" />
-      <SubscribersList title="All Stars - Loyal Subscribers" />
+      <HallOfFamersList />
+      <LoyalSubscribersList />
       <SubscribersList title="The Bench - Unsubscribers" />
     </div>
   );

@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LucideIcon } from "lucide-react";
+import Image from "next/image";
 
 interface SidebarItemProps {
   href: string;
-  icon: LucideIcon;
+  icon: string;
   title: string;
   isCollapsed: boolean;
 }
 
 export function SidebarItem({
   href,
-  icon: Icon,
+  icon,
   title,
   isCollapsed,
 }: SidebarItemProps) {
@@ -23,12 +23,20 @@ export function SidebarItem({
     <Link
       href={href}
       className={cn(
-        "flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground transition-colors",
-        isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground",
+        "flex items-center gap-2 px-3 py-2 text-sm rounded-md transition-colors",
+        isActive
+          ? "bg-white/10 text-white font-bold border-2 border-white rounded-full"
+          : "text-white font-bold transition-all duration-100 hover:ps-4 hover:bg-accent hover:border-1 hover:rounded-full hover:text-accent-foreground",
         isCollapsed && "justify-center"
       )}
     >
-      <Icon className="h-4 w-4" />
+      <Image
+        src={icon}
+        alt={title}
+        width={16}
+        height={16}
+        className={cn("h-4 w-4", isActive && "brightness-150")}
+      />
       {!isCollapsed && <span>{title}</span>}
     </Link>
   );

@@ -1,17 +1,15 @@
-import { LucideIcon } from "lucide-react";
 
 export interface NavItem {
   title: string;
   href: string;
-  icon?: LucideIcon;
+  icon?: string;
 }
 
 export interface StatisticsCardData {
   title: string;
   value: string;
   description: string;
-  icon: LucideIcon;
-  iconColor?: string;
+  icon: string;
 }
 
 export interface SubscriberData {
@@ -49,4 +47,21 @@ export interface UserData {
   name: string;
   category: string;
   amount: number;
+}
+
+export interface RemixerData {
+  id: number;
+  username: string;
+  avatar: string;
+  date: string;
+  spent: number;
+}
+
+export interface LoyalSubscriberData {
+  id: number;
+  username: string;
+  avatar: string;
+  date: string;
+  role: string;
+  points: number;
 }

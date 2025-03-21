@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.5rem;
+  /* Light theme colors */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2 0.02 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 270);
+  --primary: oklch(0.55 0.2 270);  /* Purple for primary color */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.05 270);
+  --secondary-foreground: oklch(0.55 0.2 270);
+  --muted: oklch(0.95 0.05 270);
+  --muted-foreground: oklch(0.7 0.1 270);
+  --accent: oklch(0.95 0.05 270);
+  --accent-foreground: oklch(0.55 0.2 270);
+  --destructive: oklch(0.7 0.2 30);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.03 270);
+  --input: oklch(0.9 0.03 270);
+  --ring: oklch(0.7 0.1 270);
+  
+  /* Chart colors */
+  --chart-1: oklch(0.7 0.25 320); /* Pink */
+  --chart-2: oklch(0.7 0.2 200); /* Teal */
+  --chart-3: oklch(0.6 0.2 240); /* Blue */
+  --chart-4: oklch(0.8 0.2 85);  /* Yellow */
+  --chart-5: oklch(0.7 0.2 60);  /* Orange */
+}
+
+@custom-variant dark (&:is(.dark *));
+
+.dark {
+  --background: oklch(0.2 0.08 270); /* Dark purple background like in the Figma */
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.25 0.1 270);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.25 0.1 270);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.7 0.25 270);
+  --primary-foreground: oklch(0.2 0.05 270);
+  --secondary: oklch(0.25 0.07 270);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.25 0.07 270);
+  --muted-foreground: oklch(0.7 0.1 270);
+  --accent: oklch(0.25 0.07 270);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.7 0.2 30);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.3 0.07 270);
+  --input: oklch(0.3 0.07 270);
+  --ring: oklch(0.7 0.1 270);
+  
+  /* Chart colors for dark mode - matching the pie chart in the image */
+  --chart-1: oklch(0.7 0.3 320); /* Pink segment */
+  --chart-2: oklch(0.65 0.2 190); /* Teal segment */
+  --chart-3: oklch(0.6 0.15 170); /* Light green */
+}
+
+@layer base {
+  * {
+    &:is(.dark) {
+      border-color: color-mix(in oklab, var(--border), transparent 60%);
+    }
+    
+    &:not(.dark) {
+      border-color: var(--border);
+    }
+    
+    outline-color: color-mix(in oklab, var(--ring), transparent 50%);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* Custom scrollbar */
+@media screen {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 4px;
+    
+    &:hover {
+      background: var(--muted-foreground);
+    }
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+}
+
+/* Card and component styling */
+.card-with-gradient {
+  @apply relative overflow-hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, 
+      color-mix(in oklab, var(--primary), transparent 80%), 
+      var(--primary)
+    );
+  }
+}
+
+.chart-container {
+  @apply relative;
+  
+  & .chart-tooltip {
+    @apply invisible absolute p-2 rounded text-sm;
+    background-color: color-mix(in oklab, black, transparent 20%);
+    color: white;
+    transform: translateY(5px);
+    transition: transform 0.2s, opacity 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    
+    &.visible {
+      @apply visible;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  &:hover {
+    @apply relative z-10;
+    
+    & > * {
+      @apply scale-[1.02] transition-transform duration-300;
+    }
+  }
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-2 py-1 text-xs font-medium;
+  
+  &.active {
+    background-color: oklch(0.6 0.15 135);
+    color: white;
+  }
+  
+  &.inactive {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+  }
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-appear {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s, transform 0.5s;
+  
+  &.appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

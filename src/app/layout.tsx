@@ -20,13 +20,26 @@ export default function RootLayout({
       <body
         className={`min-h-screen bg-background font-sans antialiased ${inter.variable}`}
       >
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url(/images/banner.png)",
+            backgroundSize: "cover",
+            zIndex: 100,
+            pointerEvents: "none",
+          }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
         </ThemeProvider>
       </body>
     </html>

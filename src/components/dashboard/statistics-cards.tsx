@@ -1,3 +1,4 @@
+// StatisticsCards.tsx
 import { statisticsData } from "@/data/statistics-data";
 import { StatisticsCard } from "./cards/statistics-card";
 

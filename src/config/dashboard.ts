@@ -1,14 +1,3 @@
-import {
-  LayoutDashboard,
-  Users,
-  ShoppingCart,
-  Package,
-  BarChart,
-  Layers,
-  Settings,
-  HelpCircle,
-  LogOut,
-} from "lucide-react";
 import { NavItem } from "@/types/dashboard";
 
 export const mainNav: NavItem[] = [
@@ -34,46 +23,64 @@ export const sidebarNav: NavItem[] = [
   {
     title: "Dashboard",
     href: "/",
-    icon: LayoutDashboard,
+    icon: "/icons/sidebar/1.png",
   },
   {
     title: "Users",
     href: "/users",
-    icon: Users,
+    icon: "/icons/sidebar/2.png",
   },
   {
     title: "Products",
     href: "/products",
-    icon: Package,
+    icon: "/icons/sidebar/3.png",
   },
   {
-    title: "Orders",
-    href: "/orders",
-    icon: ShoppingCart,
+    title: "Ocoins",
+    href: "/ocoins",
+    icon: "/icons/sidebar/4.png",
   },
   {
-    title: "Analytics",
-    href: "/analytics",
-    icon: BarChart,
+    title: "Assets",
+    href: "/assets",
+    icon: "/icons/sidebar/5.png",
+  },
+  {
+    title: "Apps",
+    href: "/apps",
+    icon: "/icons/sidebar/6.png",
+  },
+  {
+    title: "Alerts",
+    href: "/alerts",
+    icon: "/icons/sidebar/7.png",
   },
   {
     title: "Resources",
     href: "/resources",
-    icon: Layers,
+    icon: "/icons/sidebar/8.png",
   },
   {
-    title: "Settings",
-    href: "/settings",
-    icon: Settings,
+    title: "Roles",
+    href: "/roles",
+    icon: "/icons/sidebar/9.png",
   },
+];
+
+export const sidebarNav2: NavItem[] = [
   {
     title: "Help",
     href: "/help",
-    icon: HelpCircle,
+    icon: "/icons/sidebar/10.png",
+  },
+  {
+    title: "Setting",
+    href: "/settings",
+    icon: "/icons/sidebar/11.png",
   },
   {
     title: "Logout",
     href: "/logout",
-    icon: LogOut,
+    icon: "/icons/sidebar/12.png",
   },
 ];
