@@ -1,18 +1,15 @@
 import { MenuIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
-import { SearchInput } from "./search-input";
 import { NotificationButton } from "./notification-button";
-import { ThemeToggle } from "./theme-toggle";
 import { UserNav } from "./user-nav";
 
 interface HeaderProps {
-  isCollapsed: boolean;
   onToggleSidebar: () => void;
 }
 
-export function Header({ isCollapsed, onToggleSidebar }: HeaderProps) {
+export function Header({ onToggleSidebar }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background">
+    <header className="sticky top-0 z-40 bg-background">
       <div className="flex h-16 items-center justify-between px-4">
         <div className="flex items-center">
           <Button
@@ -25,15 +22,13 @@ export function Header({ isCollapsed, onToggleSidebar }: HeaderProps) {
             <MenuIcon className="h-5 w-5" />
           </Button>
           <div className="relative flex items-center">
-            <h2 className="text-xl font-bold tracking-tight">
+            <h2 className="text-xl md:text-3xl font-bold tracking-tight">
               General Statistics
             </h2>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <SearchInput />
+        <div className="flex items-center gap-4">
           <NotificationButton />
-          <ThemeToggle />
           <UserNav />
         </div>
       </div>

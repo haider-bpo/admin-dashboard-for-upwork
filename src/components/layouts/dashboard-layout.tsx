@@ -35,10 +35,10 @@ export function DashboardLayout({ children }: React.PropsWithChildren) {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
+    <div className="flex h-screen overflow-hidden bg-background pt-5">
       <div
         className={cn(
-          "hidden md:block relative w-46 flex-shrink-0 transition-all duration-300 gradient-background",
+          "hidden md:block relative w-60 flex-shrink-0 transition-all duration-300 gradient-background",
           isCollapsed && "w-16"
         )}
       >
