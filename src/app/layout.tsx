@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { DashboardProvider } from "@/contexts/dashboard-context";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Dashboard UI",
-  description: "Modern gamified dashboard built with Next.js and Tailwind CSS",
+  title: "Admin Dashboard",
+  description: "Modern admin dashboard built with Next.js and Tailwind CSS",
 };
 
 export default function RootLayout({
@@ -39,7 +40,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
+          <DashboardProvider>
+            <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
+          </DashboardProvider>
         </ThemeProvider>
       </body>
     </html>
