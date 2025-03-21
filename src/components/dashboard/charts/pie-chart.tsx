@@ -6,6 +6,7 @@ import {
   Pie,
   Cell,
   Tooltip,
+  TooltipProps,
 } from "recharts";
 import { FinancialData } from "@/types/dashboard";
 
@@ -14,43 +15,56 @@ interface PieChartProps {
   className?: string;
 }
 
+interface CustomTooltipProps extends TooltipProps<number, string> {
+  active?: boolean;
+  payload?: Array<{
+    payload: FinancialData;
+    value: number;
+    name: string;
+  }>;
+}
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="custom-tooltip bg-black/80 p-2 rounded border border-gray-700">
+        <p className="text-white font-medium">${data.value.toLocaleString()}</p>
+        <p className="text-gray-400 text-xs">{data.name}</p>
+      </div>
+    );
+  }
+  return null;
+};
+
 export function PieChart({ data, className }: PieChartProps) {
   return (
-    <div className={`h-48 w-full py-4 ${className}`}>
+    <div className={`h-full w-full ${className}`}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsPieChart>
           <Pie
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            paddingAngle={5}
+            innerRadius={0}
+            outerRadius={90}
+            paddingAngle={0}
             dataKey="value"
-            animationBegin={0}
-            animationDuration={1000}
+            stroke="none"
+            startAngle={90}
+            endAngle={-270}
           >
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={entry.color}
-                className="filter drop-shadow-md hover:filter hover:drop-shadow-xl hover:brightness-110 transition-all duration-200"
+                style={{
+                  filter: "drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3))",
+                }}
               />
             ))}
           </Pie>
-          <Tooltip
-            formatter={(value: number) => [
-              `$${value.toLocaleString()}`,
-              "Value",
-            ]}
-            contentStyle={{
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              border: "none",
-              borderRadius: "4px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            }}
-            itemStyle={{ color: "#ffffff" }}
-          />
+          <Tooltip content={<CustomTooltip />} />
         </RechartsPieChart>
       </ResponsiveContainer>
     </div>

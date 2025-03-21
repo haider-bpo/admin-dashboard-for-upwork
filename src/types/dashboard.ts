@@ -15,6 +15,7 @@ export interface FinancialData {
   name: string;
   value: number;
   color: string;
+  icon: string;
 }
 
 export interface OrderData {
