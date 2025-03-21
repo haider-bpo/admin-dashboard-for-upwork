@@ -8,59 +8,116 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  ReferenceLine,
+  TooltipProps,
 } from "recharts";
 import { OrderData } from "@/types/dashboard";
+import Image from "next/image";
 
-interface BarChartProps {
+interface OcoinBarChartProps {
   data: OrderData[];
   className?: string;
 }
 
-export function BarChart({ data, className }: BarChartProps) {
+interface CustomBarProps {
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+}
+
+// Custom bar with icon on top
+const CustomBar = (props: CustomBarProps) => {
+  const { x = 0, y = 0, width = 0, height = 0 } = props;
+  const iconSize = 24;
+
   return (
-    <div className={`h-[300px] ${className}`}>
+    <g>
+      {/* The bar itself */}
+      <defs>
+        <linearGradient id="ocoinGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FFDD80" stopOpacity={1} />
+          <stop offset="100%" stopColor="#FF5B5B" stopOpacity={1} />
+        </linearGradient>
+      </defs>
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill="url(#ocoinGradient)"
+        rx={8}
+        ry={8}
+      />
+
+      {/* The coin icon on top */}
+      <foreignObject
+        x={x + width / 2 - iconSize / 2}
+        y={y - iconSize - 2}
+        width={iconSize}
+        height={iconSize}
+      >
+        <div className="w-full h-full flex items-center justify-center">
+          <Image
+            src="/icons/coin.png"
+            alt="Coin"
+            width={iconSize}
+            height={iconSize}
+            className="shadow-lg"
+          />
+        </div>
+      </foreignObject>
+    </g>
+  );
+};
+
+interface CustomTooltipProps extends TooltipProps<number, string> {
+  active?: boolean;
+  payload?: Array<{
+    payload: OrderData;
+    value: number;
+  }>;
+  label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-black/80 p-2 rounded border border-gray-700">
+        <p className="text-white font-medium">{label}</p>
+        <p className="text-white">{payload[0].value.toLocaleString()} coins</p>
+      </div>
+    );
+  }
+  return null;
+};
+
+export function BarChart({ data, className }: OcoinBarChartProps) {
+  return (
+    <div className={`h-[300px] w-full ${className}`}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsBarChart
           data={data}
-          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-          barGap={8}
-          barCategoryGap={16}
-          className="cursor-pointer"
+          margin={{ top: 30, right: 20, left: 20, bottom: 5 }}
+          barGap={10}
+          barCategoryGap={10}
         >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.2} />
+          <CartesianGrid vertical={false} horizontal={true} opacity={0.1} />
           <XAxis
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fontSize: 12 }}
-            padding={{ left: 8, right: 8 }}
+            tick={{ fill: "#a8a8b3", fontSize: 12 }}
           />
-          <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
-          <Tooltip
-            formatter={(value: number) => [`$${value}`, "Amount"]}
-            cursor={{ fill: "rgba(0, 0, 0, 0.05)" }}
-            contentStyle={{
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              border: "none",
-              borderRadius: "4px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            }}
-            itemStyle={{ color: "#ffffff" }}
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#a8a8b3", fontSize: 12 }}
+            tickFormatter={(value) => `${value / 1000}K`}
           />
-          <defs>
-            <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#FF8A48" stopOpacity={1} />
-              <stop offset="100%" stopColor="#FFC078" stopOpacity={1} />
-            </linearGradient>
-          </defs>
-          <Bar
-            dataKey="value"
-            radius={[4, 4, 0, 0]}
-            fill="url(#colorGradient)"
-            animationBegin={0}
-            animationDuration={1200}
-            className="filter drop-shadow-sm hover:brightness-110 transition-all duration-200"
-          />
+          <Tooltip content={<CustomTooltip />} />
+          <ReferenceLine y={0} stroke="#a8a8b3" strokeOpacity={0.2} />
+          <Bar dataKey="value" shape={<CustomBar />} minPointSize={5} />
         </RechartsBarChart>
       </ResponsiveContainer>
     </div>

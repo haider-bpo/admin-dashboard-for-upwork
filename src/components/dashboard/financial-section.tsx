@@ -1,5 +1,5 @@
 import { FinancialOverviewCard } from "./cards/financial-overview-card";
-import { OrderSpendingCard } from "./cards/order-spending-card";
+import { OcoinSpendingCard } from "./cards/ocoin-spending-card";
 
 interface FinancialSectionProps {
   isLoaded: boolean;
@@ -16,7 +16,7 @@ export function FinancialSection({ isLoaded }: FinancialSectionProps) {
       }}
     >
       <FinancialOverviewCard />
-      <OrderSpendingCard />
+      <OcoinSpendingCard/>
     </div>
   );
 }

@@ -21,7 +21,7 @@ export function StatisticsCard({
           <img src={icon} alt={`${title} icon`} className="h-7 w-7 m-auto" />
         </div>
         <div className="">
-          <div className="text-4xl font-bold">{value}</div>
+          <div className="text-3xl font-bold">{value}</div>
           <div className="text-xs text-muted-foreground">{description}</div>
         </div>
       </div>
